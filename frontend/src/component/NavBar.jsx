@@ -4,6 +4,7 @@ import { Button, useDisclosure } from "@chakra-ui/react";
 import { SignUp } from "./SignUp";
 import { Login } from "./Login";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 export const NavBar = () => {
   const {
@@ -26,10 +27,15 @@ export const NavBar = () => {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          backgroundColor: "#525659",
+          padding: "1rem",
+          backgroundColor: "azure",
         }}
       >
-        <img style={{ maxWidth: "80px" }} src={logo} />
+        <Link to="/">
+          {" "}
+          <img style={{ maxWidth: "50px" }} src={logo} />
+        </Link>
+
         <div style={{ display: "flex", gap: "1rem" }}>
           {user.user.name ? (
             <Button size="sm">Hi! {user.user.name.toUpperCase()}</Button>
@@ -37,10 +43,15 @@ export const NavBar = () => {
             <Button size="sm">Hi! Guest</Button>
           )}
 
-          <Button size="sm" onClick={onSignupOpen}>
+          <Button size="sm" variant="outline" onClick={onSignupOpen}>
             Signup
           </Button>
-          <Button size="sm" onClick={onLoginOpen}>
+          <Button
+            colorScheme="blue"
+            color="white"
+            size="sm"
+            onClick={onLoginOpen}
+          >
             Login
           </Button>
         </div>
