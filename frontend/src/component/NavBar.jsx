@@ -31,10 +31,10 @@ export const NavBar = () => {
       >
         <img style={{ maxWidth: "80px" }} src={logo} />
         <div style={{ display: "flex", gap: "1rem" }}>
-          {user.data.name ? (
-            <Button size="sm">Hi! {user.data.name.toUpperCase()}</Button>
+          {user.user.name ? (
+            <Button size="sm">Hi! {user.user.name.toUpperCase()}</Button>
           ) : (
-            <Button>Hi! Guest</Button>
+            <Button size="sm">Hi! Guest</Button>
           )}
 
           <Button size="sm" onClick={onSignupOpen}>

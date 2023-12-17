@@ -1,17 +1,17 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { loginAPI, signUpAPI, devAPI, getDataAPI } from "../API/api";
 
+const storedUserData = localStorage.getItem("userData");
+const storedToken = localStorage.getItem("token");
+const storedCandidateData = localStorage.getItem("candidateData");
+
 const initialState = {
-  user: {
-    data: {},
-    token: localStorage.getItem("token") || null,
-  },
+  user: JSON.parse(localStorage.getItem("userData")) || {},
   usedDataForm: {},
-  candidateData: localStorage.getItem("candidateData") || {},
+  candidateData: {},
   error: null,
   status: "idle",
 };
-
 export const signUpUser = createAsyncThunk(
   "auth/signUpUser",
   async (userData, { rejectWithValue }) => {
@@ -81,6 +81,8 @@ const userSlice = createSlice({
       state.status = "succeeded";
       state.user.data = action.payload.user; // Update user data
       state.user.token = action.payload.token; // Update token
+      console.log("first", action.payload);
+      localStorage.setItem("userData", JSON.stringify(action.payload.user));
       localStorage.setItem("token", action.payload.token);
     });
     builder.addCase(loginUser.rejected, (state) => {
@@ -104,7 +106,7 @@ const userSlice = createSlice({
     builder.addCase(getUserData.fulfilled, (state, action) => {
       state.status = "succeeded";
       state.candidateData = action.payload;
-      localStorage.setItem("candidateData", action.payload);
+      localStorage.setItem("candidateData", JSON.stringify(action.payload));
     });
     builder.addCase(getUserData.rejected, (state) => {
       state.status = "failed";

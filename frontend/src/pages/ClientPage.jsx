@@ -15,6 +15,7 @@ import {
 export const ClientPage = () => {
   const dispatch = useDispatch();
   const { candidateData } = useSelector((state) => state);
+  console.log(candidateData);
   useEffect(() => {
     dispatch(getUserData);
     console.log(candidateData);
@@ -29,7 +30,7 @@ export const ClientPage = () => {
       }}
     >
       {candidateData &&
-        candidateData.map((e) => {
+        candidateData?.map((e) => {
           return (
             <Card>
               <CardHeader>

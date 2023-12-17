@@ -1,6 +1,6 @@
 ## setting up backend
 
-copy the repository and run `npm node index.js` in terminal;
+copy the repository and run `node index.js` or `nodemon index.js` in terminal;
 
 ## setting up fronend
 

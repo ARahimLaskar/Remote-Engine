@@ -11,19 +11,21 @@ export const Home = () => {
   const navigate = useNavigate();
   const handleEmployer = () => {
     dispatch(getUserData());
+    console.log(getUserData());
     navigate("/client");
   };
   const handleCandidate = () => {
     navigate("/developer");
   };
   return (
-    <div>
+    <div style={{ marginTop: "4rem" }}>
       <h1>INDIA’S #1 JOB PLATFORM</h1>
       <h1>Get Started </h1>
       <div
         style={{
           display: "flex",
           justifyContent: "center",
+          marginTop: "2rem",
           gap: "1rem",
         }}
       >
